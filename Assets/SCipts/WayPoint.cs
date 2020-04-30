@@ -2,18 +2,22 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+//USED AS A DATA CLASS
 public class WayPoint : MonoBehaviour
 {
     //CONFIG PARAMS
+    Color exploredColor = Color.blue;
     const int GRIDSIZE = 10;
-    Vector2Int gridPos;  // a 2 DIM VARIABLE
+    public bool isExplored = false; //CHECKED
+    public WayPoint exploredFrom; //WHO found me?
 
-    //GETTER METHOD
+    //GETTER METHOD ON A CONSTANT VALUE.
     public int GetGridSize()
     {
         return GRIDSIZE;
     }
-    //GETTER METHOD * math error
+    //GETTER METHOD * math error WE ORIGINALLY MULTIPLIED BY THE GRIDSIZE HERE, WHEN
+    //IT SHOULD HAVE BEEN ON THE END SCRIPT.
     public Vector2Int GetGridPos()
     {
         return new Vector2Int(
@@ -21,10 +25,18 @@ public class WayPoint : MonoBehaviour
                 (Mathf.RoundToInt(transform.position.z / GRIDSIZE))
         );
     }
-    //
+    //CHANGES TOPS TO INDICATE SEARCH.
     public void SetTopColor(Color color)
     {
         MeshRenderer topMeshRender = transform.Find("Quad TOP").GetComponent<MeshRenderer>();
         topMeshRender.material.color = color;
+    }
+    //ONLY TO CHANGE COLOR ON EXPLORED
+    private void Update()
+    {
+        if (isExplored)
+        {
+            SetTopColor(exploredColor);
+        }
     }
 }

@@ -10,8 +10,9 @@ public class PathFinder : MonoBehaviour
     Dictionary<Vector2Int, WayPoint> grid = new Dictionary<Vector2Int, WayPoint>();
     //OUR DATA TYPE IS WAYPOINT SCRIPT
     Queue<WayPoint> queue = new Queue<WayPoint>();
-    [SerializeField] bool isRunning = true; //TODO make private
-    //USING PREDEFINED DIRECTIONS
+    WayPoint searchCenter; //CURRENT SEARCH
+    bool isRunning = true;
+    //ARRAY USING PREDEFINED DIRECTIONS
     Vector2Int[] directions =
     {
         Vector2Int.up,
@@ -19,56 +20,83 @@ public class PathFinder : MonoBehaviour
         Vector2Int.down,
         Vector2Int.left
     };
+    //OUR COLLECTION OF CONNECTIONS.
+    List<WayPoint> path = new List<WayPoint>();
 
-    //
-    private void Start()
+    //GETTER
+    public List<WayPoint> GetPath()
     {
         LoadBlocks();
         ColorStartAndEnd();
-        PathFind();
-        //ExploreNeighbours();
+        BreadthFirstSearch();
+        CreatePath();
+        return path;
+    }
+    //BREADCRUMBS
+    private void CreatePath()
+    {
+        path.Add(endWayPoint);
+        WayPoint previous = endWayPoint.exploredFrom;
+        while(previous != startWayPoint)
+        {           
+            path.Add(previous);
+            previous = previous.exploredFrom;
+            //add intermediat waypoints
+        }
+        path.Add(startWayPoint);
+        path.Reverse();
+        //add start point > reverse the list
     }
     //QUEUE WORK.
-    private void PathFind()
+    private void BreadthFirstSearch()
     {
         queue.Enqueue(startWayPoint);
-        while(queue.Count > 0)
+        while(queue.Count > 0 && isRunning)
         {
-            var searchCenter = queue.Dequeue();
-            Debug.Log("Searching from: " + searchCenter); //todo remove  
-            HaltIfEndFound(searchCenter);
+            searchCenter = queue.Dequeue();           
+            Debug.Log("Searching from: " + searchCenter); 
+            HaltIfEndFound();
+            ExploreNeighbours();
+            searchCenter.isExplored = true;
         }
-
-        Debug.Log("Finished Pathfinding steps.");
     }
     //HELPER: CHECK FOR ENDPOINT
-    private void HaltIfEndFound(WayPoint searchCenter)
-    {
+    private void HaltIfEndFound()
+    {       
         if (searchCenter == endWayPoint)
         {
             Debug.Log("Searching from End point, stopping.");
             isRunning = false;
         }
     }
-    //
+    //EXPLORER AROUND TOP, RIGHT, BTM, LEFT AS SET IN OUR ARRAY.
     private void ExploreNeighbours()
     {
-        foreach(Vector2Int direction in directions)
+        if (!isRunning) { return; }
+        foreach (Vector2Int direction in directions)
         {
-            Vector2Int exploringCoordinates = startWayPoint.GetGridPos() + direction;
-            Debug.Log("Exploring " + exploringCoordinates);
-            try
+            Vector2Int neighbourCoordinates = searchCenter.GetGridPos() + direction;
+            Debug.Log("Exploring " + neighbourCoordinates);
+            if(grid.ContainsKey(neighbourCoordinates))
             {
-                grid[exploringCoordinates].SetTopColor(Color.blue);
-            }
-            catch(Exception ex)
-            {
-                Debug.Log(ex);
+                QueueNewNeighbour(neighbourCoordinates);
             }            
         }
     }
+    //FOUND A NEIGHBOUR > ADD HIM TO QUEUE.
+    private void QueueNewNeighbour(Vector2Int neighbourCoordinates)
+    {
+        WayPoint neighbour = grid[neighbourCoordinates];
+        //NOT EXPLORED AND NOT ALREADY IN QUEUE.
+        if (!neighbour.isExplored && !queue.Contains(neighbour))
+        {
+            queue.Enqueue(neighbour);
+            Debug.Log("Queueing: " + neighbour);
+            neighbour.exploredFrom = searchCenter;
+        }
+    }
     //CHANGING THE TOP COLOR FOR START OR END POINT.
-    private void ColorStartAndEnd()
+    private void ColorStartAndEnd() //TODO add to waypoint?
     {
         startWayPoint.SetTopColor(Color.green);
         endWayPoint.SetTopColor(Color.red);
