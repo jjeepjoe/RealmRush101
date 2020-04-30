@@ -5,6 +5,7 @@ using UnityEngine;
 public class EnemyMovement : MonoBehaviour
 {
     //CONFIG PARAMS
+
     //
     private void Start()
     {
@@ -16,13 +17,10 @@ public class EnemyMovement : MonoBehaviour
     //WE ARE CHANGING THE ENEMY POSITION EVERY SECOND IN THE LIST ORDER.
     IEnumerator FollowPath(List<WayPoint> path)
     {
-        Debug.Log("ENEMY: Starting Patrol.");
         foreach (WayPoint wayPoint in path)
         {
             transform.position = wayPoint.transform.position;
-            Debug.Log("ENEMY: Visiting Block: " + wayPoint.name);
             yield return new WaitForSeconds(1f);
         }
-        Debug.Log("ENEMY: Ending Patrol.");
     }
 }

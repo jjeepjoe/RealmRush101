@@ -41,11 +41,9 @@ public class PathFinder : MonoBehaviour
         {           
             path.Add(previous);
             previous = previous.exploredFrom;
-            //add intermediat waypoints
         }
         path.Add(startWayPoint);
         path.Reverse();
-        //add start point > reverse the list
     }
     //QUEUE WORK.
     private void BreadthFirstSearch()
@@ -53,8 +51,7 @@ public class PathFinder : MonoBehaviour
         queue.Enqueue(startWayPoint);
         while(queue.Count > 0 && isRunning)
         {
-            searchCenter = queue.Dequeue();           
-            Debug.Log("Searching from: " + searchCenter); 
+            searchCenter = queue.Dequeue();
             HaltIfEndFound();
             ExploreNeighbours();
             searchCenter.isExplored = true;
@@ -65,7 +62,6 @@ public class PathFinder : MonoBehaviour
     {       
         if (searchCenter == endWayPoint)
         {
-            Debug.Log("Searching from End point, stopping.");
             isRunning = false;
         }
     }
@@ -76,7 +72,6 @@ public class PathFinder : MonoBehaviour
         foreach (Vector2Int direction in directions)
         {
             Vector2Int neighbourCoordinates = searchCenter.GetGridPos() + direction;
-            Debug.Log("Exploring " + neighbourCoordinates);
             if(grid.ContainsKey(neighbourCoordinates))
             {
                 QueueNewNeighbour(neighbourCoordinates);
@@ -91,7 +86,6 @@ public class PathFinder : MonoBehaviour
         if (!neighbour.isExplored && !queue.Contains(neighbour))
         {
             queue.Enqueue(neighbour);
-            Debug.Log("Queueing: " + neighbour);
             neighbour.exploredFrom = searchCenter;
         }
     }
@@ -109,13 +103,8 @@ public class PathFinder : MonoBehaviour
         {
             //GET THE CONNECTION > CHECK FOR OVERLAP > ADD TO COLLECTION
             var gridPos = wayPoint.GetGridPos();
-            if (grid.ContainsKey(gridPos))
+            if (!grid.ContainsKey(gridPos))
             {
-                Debug.Log("Skipping Overlapping Block: " + wayPoint);
-            }
-            else
-            {
-                //add to dictionary
                 grid.Add(gridPos, wayPoint);
             }            
         }        
