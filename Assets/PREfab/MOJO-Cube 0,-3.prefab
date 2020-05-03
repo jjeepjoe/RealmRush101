@@ -60,6 +60,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isExplored: 0
+  isPlaceable: 0
   exploredFrom: {fileID: 0}
 --- !u!65 &207639332798984468
 BoxCollider:

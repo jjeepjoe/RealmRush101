@@ -3186,7 +3186,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 963194225}
   m_LocalRotation: {x: 0.3871071, y: 0.0055304784, z: -0.002327185, w: 0.92201525}
-  m_LocalPosition: {x: -4.325365, y: 38.836624, z: -30.699043}
+  m_LocalPosition: {x: 0.15446377, y: 72.59976, z: -62.387283}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -4327,7 +4327,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   secondsBetweenSpawns: 5
-  enemyPrefab: {fileID: 9169634838262989889, guid: bdedeb94f20780d4abb46c6e3f126741,
+  enemyPrefab: {fileID: 901588404421099824, guid: 04f81ff9814844ccfa08226f8d46a3f4,
     type: 3}
 --- !u!1001 &1331055984
 PrefabInstance:
@@ -4799,6 +4799,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1493326778}
   - component: {fileID: 1493326779}
+  - component: {fileID: 1493326780}
   m_Layer: 0
   m_Name: WORLD Container
   m_TagString: Untagged
@@ -4878,6 +4879,23 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   startWayPoint: {fileID: 985196395}
   endWayPoint: {fileID: 33552338}
+--- !u!114 &1493326780
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1493326777}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8338c3e1cc8239840bb3bd21e02941b7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  towerLimit: 5
+  defenderTower: {fileID: 2155050266951785019, guid: 5a1a1ff39af61fb4dba9494b94f59964,
+    type: 3}
+  defenderContainer: {fileID: 659424451}
+  baseWayPoint: {fileID: 0}
 --- !u!1001 &1504648270
 PrefabInstance:
   m_ObjectHideFlags: 0

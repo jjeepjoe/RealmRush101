@@ -5,12 +5,12 @@ using UnityEngine;
 public class EnemyMovement : MonoBehaviour
 {
     //CONFIG PARAMS
-
+    //[SerializeField] List<WayPoint> path; //TODO: remove
     //
     private void Start()
     {
         PathFinder pathfinder = FindObjectOfType<PathFinder>();
-        var path = pathfinder.GetPath();
+        var path = pathfinder.GetPath(); //debug point.
         StartCoroutine(FollowPath(path));
     }
     //PASSING IN THE LIST FOR THE ENEMY TO MOVE ON
