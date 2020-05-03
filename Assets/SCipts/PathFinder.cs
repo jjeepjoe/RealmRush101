@@ -26,11 +26,19 @@ public class PathFinder : MonoBehaviour
     //GETTER
     public List<WayPoint> GetPath()
     {
+        if(path.Count == 0)
+        {
+            CalculatePath();
+        }
+        return path;
+    }
+    //REFACTORED
+    private void CalculatePath()
+    {
         LoadBlocks();
         ColorStartAndEnd();
         BreadthFirstSearch();
         CreatePath();
-        return path;
     }
     //BREADCRUMBS
     private void CreatePath()

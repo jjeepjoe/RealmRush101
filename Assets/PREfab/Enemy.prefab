@@ -9,7 +9,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2626583263467673774}
+  - component: {fileID: 8516538647268516689}
   - component: {fileID: 9169634838262989889}
+  - component: {fileID: 9008618945820957238}
   m_Layer: 0
   m_Name: Enemy
   m_TagString: Untagged
@@ -32,6 +34,22 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!54 &8516538647268516689
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2626583263467673775}
+  serializedVersion: 2
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_UseGravity: 1
+  m_IsKinematic: 1
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0
 --- !u!114 &9169634838262989889
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -44,6 +62,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 93120601b6197c644bf75dc6caaefed6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &9008618945820957238
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2626583263467673775}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 15b61ffb7ce727549912d6a42fb92b1a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &5689746730055333076
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -53,7 +83,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 1670769832628526, guid: 0dc657ece5d6f514297eb54082bc243b, type: 3}
       propertyPath: m_Name
-      value: Enemy_A
+      value: Body
       objectReference: {fileID: 0}
     - target: {fileID: 4186752768196848, guid: 0dc657ece5d6f514297eb54082bc243b, type: 3}
       propertyPath: m_LocalPosition.x
@@ -111,7 +141,9 @@ PrefabInstance:
       propertyPath: m_LocalScale.z
       value: 0.5
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 5334210203043062341, guid: 0dc657ece5d6f514297eb54082bc243b, type: 3}
+    - {fileID: 7496684063441224102, guid: 0dc657ece5d6f514297eb54082bc243b, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 0dc657ece5d6f514297eb54082bc243b, type: 3}
 --- !u!4 &5690532691127153700 stripped
 Transform:
