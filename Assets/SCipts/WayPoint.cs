@@ -39,4 +39,9 @@ public class WayPoint : MonoBehaviour
             SetTopColor(exploredColor);
         }
     }
+    //SHOULD BE AUTOMATIC
+    void OnMouseOver()
+    {
+        Debug.Log("MOUSE-OVER " + gameObject.name);
+    }
 }
