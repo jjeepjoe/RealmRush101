@@ -11,6 +11,8 @@ public class WayPoint : MonoBehaviour
     public bool isExplored = false;
     public bool isPlaceable = true;
     public WayPoint exploredFrom;
+    [SerializeField] GameObject defenderTower;
+    [SerializeField] Transform defenderContainer;
     Vector2Int gridPos; //?
 
     //GETTER METHOD ON A CONSTANT VALUE.
@@ -35,6 +37,10 @@ public class WayPoint : MonoBehaviour
             if (isPlaceable)
             {
                 Debug.Log("MOUSE-CLICK " + gameObject.name);
+                GameObject temp_GO = Instantiate(defenderTower, gameObject.transform.position,
+                                            Quaternion.identity);
+                temp_GO.transform.SetParent(defenderContainer);
+                isPlaceable = false;
             }
             else
             {
