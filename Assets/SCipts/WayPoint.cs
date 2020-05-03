@@ -6,10 +6,12 @@ using UnityEngine;
 public class WayPoint : MonoBehaviour
 {
     //CONFIG PARAMS
-    Color exploredColor = Color.blue;
+    //Color exploredColor = Color.blue;
     const int GRIDSIZE = 10;
-    public bool isExplored = false; //CHECKED
-    public WayPoint exploredFrom; //WHO found me?
+    public bool isExplored = false;
+    public bool isPlaceable = true;
+    public WayPoint exploredFrom;
+    Vector2Int gridPos; //?
 
     //GETTER METHOD ON A CONSTANT VALUE.
     public int GetGridSize()
@@ -25,23 +27,34 @@ public class WayPoint : MonoBehaviour
                 (Mathf.RoundToInt(transform.position.z / GRIDSIZE))
         );
     }
-    //CHANGES TOPS TO INDICATE SEARCH.
-    public void SetTopColor(Color color)
-    {
-        MeshRenderer topMeshRender = transform.Find("Quad TOP").GetComponent<MeshRenderer>();
-        topMeshRender.material.color = color;
-    }
-    //ONLY TO CHANGE COLOR ON EXPLORED
-    private void Update()
-    {
-        if (isExplored)
-        {
-            SetTopColor(exploredColor);
-        }
-    }
-    //SHOULD BE AUTOMATIC
+    //SHOULD BE AUTOMATIC UNITY MWETHON WHEN SCRIPT FILES IS ATTACHED TO A COLLIDER.
     void OnMouseOver()
     {
-        Debug.Log("MOUSE-OVER " + gameObject.name);
+        if (Input.GetMouseButtonDown(0))
+        {
+            if (isPlaceable)
+            {
+                Debug.Log("MOUSE-CLICK " + gameObject.name);
+            }
+            else
+            {
+                Debug.Log("CAN NOT PLACE HERE.");
+            }
+        }        
     }
+    ////CHANGES TOPS TO INDICATE SEARCH.
+    //public void SetTopColor(Color color)
+    //{
+    //    MeshRenderer topMeshRender = transform.Find("Quad TOP").GetComponent<MeshRenderer>();
+    //    topMeshRender.material.color = color;
+    //}
+    //ONLY TO CHANGE COLOR ON EXPLORED
+    //private void Update()
+    //{
+    //    if (isExplored)
+    //    {
+    //        SetTopColor(exploredColor);
+    //    }
+    //}
+
 }

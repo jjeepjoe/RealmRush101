@@ -36,22 +36,28 @@ public class PathFinder : MonoBehaviour
     private void CalculatePath()
     {
         LoadBlocks();
-        ColorStartAndEnd();
+        //ColorStartAndEnd();
         BreadthFirstSearch();
         CreatePath();
     }
     //BREADCRUMBS
     private void CreatePath()
     {
-        path.Add(endWayPoint);
+        SetAsPath(endWayPoint);
         WayPoint previous = endWayPoint.exploredFrom;
         while(previous != startWayPoint)
-        {           
-            path.Add(previous);
+        {
+            SetAsPath(previous);
             previous = previous.exploredFrom;
         }
-        path.Add(startWayPoint);
+        SetAsPath(startWayPoint);
         path.Reverse();
+    }
+    //HELPER METHOD TO FLAG PATH BLOCKS USED.
+    private void SetAsPath(WayPoint waypoint)
+    {
+        path.Add(waypoint);
+        waypoint.isPlaceable = false;
     }
     //QUEUE WORK.
     private void BreadthFirstSearch()
@@ -97,12 +103,12 @@ public class PathFinder : MonoBehaviour
             neighbour.exploredFrom = searchCenter;
         }
     }
-    //CHANGING THE TOP COLOR FOR START OR END POINT.
-    private void ColorStartAndEnd() //TODO add to waypoint?
-    {
-        startWayPoint.SetTopColor(Color.green);
-        endWayPoint.SetTopColor(Color.red);
-    }
+    ////CHANGING THE TOP COLOR FOR START OR END POINT.
+    //private void ColorStartAndEnd() //TODO add to waypoint?
+    //{
+    //    startWayPoint.SetTopColor(Color.green);
+    //    endWayPoint.SetTopColor(Color.red);
+    //}
     //WE COLLECT ALL OF THE GAMEOBJECTS IN THE HIERARCHY THAT ARE WAYPOINTS
     private void LoadBlocks()
     {
