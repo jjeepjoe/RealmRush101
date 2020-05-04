@@ -9,9 +9,9 @@ public class EnemySpawner : MonoBehaviour
     [Range(.1f,120f)]
     [SerializeField] float secondsBetweenSpawns = 5f;
     [SerializeField] EnemyMovement enemyPrefab;
-
     int enemyKillScore = 0;
     [SerializeField] Text killedScore;
+    [SerializeField] AudioClip spawnedEnemySFX;
 
     private void Start()
     {
@@ -29,8 +29,9 @@ public class EnemySpawner : MonoBehaviour
         //NON-STOP SPAWNING
         while (true)
         {
-            yield return new WaitForSeconds(secondsBetweenSpawns);
             Instantiate(enemyPrefab, gameObject.transform);
+            //GetComponent<AudioSource>().PlayOneShot(spawnedEnemySFX);
+            yield return new WaitForSeconds(secondsBetweenSpawns);            
         }
     }
     public void CountUpKills()

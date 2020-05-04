@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 33220608907959842}
   - component: {fileID: 23253275566594634}
   - component: {fileID: 4142618469910418052}
+  - component: {fileID: 2030636963}
   m_Layer: 0
   m_Name: Friendly_Base
   m_TagString: Untagged
@@ -93,3 +94,19 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 9.70076, y: 18.981827, z: 14.068794}
   m_Center: {x: -13.592674, y: 23.934708, z: 0.07947254}
+--- !u!114 &2030636963
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1716733542366808}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 439426d0b1f13054b981034f7a22f607, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  playerHealth: 10
+  healthDecrease: 1
+  healthText: {fileID: 0}
+  loseHealthSFX: {fileID: 8300000, guid: 745d276fdfb2b6147a588c14aef25087, type: 3}

@@ -9,7 +9,15 @@ public class EnemyDamage : MonoBehaviour
     [SerializeField] int hitPoints = 10;
     [SerializeField] ParticleSystem hitParticlePrefab;
     [SerializeField] ParticleSystem deathParticleSystem;
-    
+    [SerializeField] AudioClip hitEnemySFX, killedEnemySFX;
+    //CASHE COMPONENTS
+    AudioSource myAudioSource;
+
+    private void Start()
+    {
+        myAudioSource = GetComponent<AudioSource>();
+    }
+
     private void OnParticleCollision(GameObject other)
     {
         ProcessHit();
@@ -28,6 +36,8 @@ public class EnemyDamage : MonoBehaviour
         //Destroy(temp_vfx.gameObject, temp_vfx.main.Duration)
         //SCORE IT UP
         FindObjectOfType<EnemySpawner>().CountUpKills();
+        //WE NEED TO MAKE SURE THE SOUND IS AT THE CAMERA
+        AudioSource.PlayClipAtPoint(killedEnemySFX, Camera.main.transform.position);
         Destroy(gameObject, .5f);
     }
     //
@@ -35,5 +45,6 @@ public class EnemyDamage : MonoBehaviour
     {
         hitPoints -= 1;
         hitParticlePrefab.Play();
+        myAudioSource.PlayOneShot(hitEnemySFX);
     }
 }
