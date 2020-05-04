@@ -9,7 +9,7 @@ public class EnemyDamage : MonoBehaviour
     [SerializeField] int hitPoints = 10;
     [SerializeField] ParticleSystem hitParticlePrefab;
     [SerializeField] ParticleSystem deathParticleSystem;
-
+    
     private void OnParticleCollision(GameObject other)
     {
         ProcessHit();
@@ -18,17 +18,17 @@ public class EnemyDamage : MonoBehaviour
             ProcessDeath();
         }
     }
-    //MY WAY WORKS FOR REFACTORING OUT JOBS
+    //MY WAY WORKS FOR REFACTORING OUT JOBS > HIS SUGGESTION TO USE VARIABLE
     private void ProcessDeath()
     {
         deathParticleSystem.gameObject.SetActive(true);
         //var temp_vfx = Instantiate(deathParticleSystem, transform.position, 
         //                            Quaternion.identity);
         //temp_vfx.Play();
-        Debug.Log("BOOM");
-        //gameObject.SetActive(false);
+        //Destroy(temp_vfx.gameObject, temp_vfx.main.Duration)
+        //SCORE IT UP
+        FindObjectOfType<EnemySpawner>().CountUpKills();
         Destroy(gameObject, .5f);
-        //StartCoroutine(KillEnemy());
     }
     //
     private void ProcessHit()
@@ -36,10 +36,4 @@ public class EnemyDamage : MonoBehaviour
         hitPoints -= 1;
         hitParticlePrefab.Play();
     }
-    ////BOOM BOOM
-    //IEnumerator KillEnemy()
-    //{
-    //    yield return new WaitForSeconds(.5f);
-    //    Destroy(gameObject);
-    //}
 }

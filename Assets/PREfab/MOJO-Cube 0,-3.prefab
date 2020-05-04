@@ -59,7 +59,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e0c7d4f201045ec47ab98580596a8777, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isExplored: 0
+  isExplored: 1
   isPlaceable: 0
   exploredFrom: {fileID: 0}
 --- !u!65 &207639332798984468

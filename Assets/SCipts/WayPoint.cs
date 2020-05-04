@@ -43,7 +43,7 @@ public class WayPoint : MonoBehaviour
             }
         }        
     }
-    ////CHANGES TOPS TO INDICATE SEARCH.
+    ////CHANGES TOPS TO INDICATE SEARCH > USED FOR LEARNING PROCESS
     //public void SetTopColor(Color color)
     //{
     //    MeshRenderer topMeshRender = transform.Find("Quad TOP").GetComponent<MeshRenderer>();

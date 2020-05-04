@@ -9,7 +9,8 @@ public class TowerFactory : MonoBehaviour
     [SerializeField] Tower defenderTower;
     [SerializeField] Transform defenderContainer;
     Queue<Tower> towersQueue = new Queue<Tower>();
-    //
+
+    //PUBLIC TO PRIVATE INTERACTIONS
     public void AddTower(WayPoint baseWaypoint)
     {
         int towerCount = towersQueue.Count;

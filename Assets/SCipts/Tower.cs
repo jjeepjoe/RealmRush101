@@ -9,9 +9,7 @@ public class Tower : MonoBehaviour
     [SerializeField] Transform objectToPan;
     [SerializeField] float attackRange = 10f;
     [SerializeField] ParticleSystem projectileParticle;
-
-    public WayPoint baseWayPoint; //current position TODO
-
+    public WayPoint baseWayPoint; 
     //STATE OF THE TOWER
     Transform targetEnemy;
 
@@ -21,7 +19,7 @@ public class Tower : MonoBehaviour
         SetTargetEnemy();
         if (targetEnemy != null)
         {
-            //TRANSFORM METHOD
+            //THIS IS A TRANSFORM METHOD
             objectToPan.LookAt(targetEnemy);
             FireAtEnemy();
         }
@@ -42,7 +40,7 @@ public class Tower : MonoBehaviour
         }
         targetEnemy = closestEnemy;
     }
-    //
+    //CHOOSE THE ONE TO SHOOT
     private Transform GetClosest(Transform transformA, Transform transformB)
     {
         var distToA = Vector3.Distance(transform.position, transformA.position);
@@ -53,7 +51,7 @@ public class Tower : MonoBehaviour
         }
         return transformB;
     }
-    //
+    //PULL THE TRIGGER
     private void FireAtEnemy()
     {
         float distanceToEnemy = Vector3.Distance(targetEnemy.transform.position,
@@ -67,7 +65,7 @@ public class Tower : MonoBehaviour
             Shoot(false);
         }
     }
-    //
+    //ON/OFF TOGGLE
     private void Shoot(bool isActive)
     {
         var emissionModule = projectileParticle.emission;

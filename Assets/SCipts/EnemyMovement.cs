@@ -5,7 +5,8 @@ using UnityEngine;
 public class EnemyMovement : MonoBehaviour
 {
     //CONFIG PARAMS
-    //[SerializeField] List<WayPoint> path; //TODO: remove
+    [SerializeField] float movementPeriod = .5f;
+    [SerializeField] ParticleSystem endZoneParticles;
     //
     private void Start()
     {
@@ -20,7 +21,18 @@ public class EnemyMovement : MonoBehaviour
         foreach (WayPoint wayPoint in path)
         {
             transform.position = wayPoint.transform.position;
-            yield return new WaitForSeconds(2f); //TODO: SLOWED DOWN FOR TESTING
+            yield return new WaitForSeconds(movementPeriod); //TODO: SLOWED DOWN FOR TESTING
         }
+        SelfDestruct();
+    }
+    //
+    private void SelfDestruct()
+    {
+        Debug.Log("END ZONE");
+        ParticleSystem temp_FXF = Instantiate(endZoneParticles, transform.position, 
+                                                Quaternion.identity);
+        temp_FXF.Play();
+        Destroy(temp_FXF.gameObject, temp_FXF.main.duration);
+        Destroy(gameObject);
     }
 }

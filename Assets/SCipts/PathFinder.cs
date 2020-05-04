@@ -103,7 +103,7 @@ public class PathFinder : MonoBehaviour
             neighbour.exploredFrom = searchCenter;
         }
     }
-    ////CHANGING THE TOP COLOR FOR START OR END POINT.
+    ////CHANGING THE TOP COLOR FOR START OR END POINT > LEARNING PROCESS
     //private void ColorStartAndEnd() //TODO add to waypoint?
     //{
     //    startWayPoint.SetTopColor(Color.green);
